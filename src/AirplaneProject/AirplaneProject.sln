@@ -13,7 +13,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirplaneProject.Domain", "A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirplaneProject.Infrastructure", "AirplaneProject.Infrastructure\AirplaneProject.Infrastructure.csproj", "{92CAC773-152C-42FE-AE70-588D23F461E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Airplane.Application", "Airplane.Application\Airplane.Application.csproj", "{CECB7F63-EFFB-4E17-A4D5-3658273C0BF4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Airplane.Application", "Airplane.Application\Airplane.Application.csproj", "{CECB7F63-EFFB-4E17-A4D5-3658273C0BF4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B2C4731E-E63F-4E1C-B3BE-2536F420136A}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

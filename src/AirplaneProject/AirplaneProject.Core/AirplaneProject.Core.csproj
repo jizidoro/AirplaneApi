@@ -1,12 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\AirplaneProject.Domain\AirplaneProject.Domain.csproj" />
-  </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Repositories\Views\" />
@@ -15,6 +11,10 @@
   <ItemGroup>
     <PackageReference Include="FluentValidation.AspNetCore" Version="8.6.2" />
     <PackageReference Include="MediatR" Version="8.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AirplaneProject.Domain\AirplaneProject.Domain.csproj" />
   </ItemGroup>
 
 </Project>

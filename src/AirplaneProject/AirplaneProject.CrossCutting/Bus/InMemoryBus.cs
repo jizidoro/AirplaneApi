@@ -4,7 +4,7 @@ using AirplaneProject.Core.Commands;
 using AirplaneProject.Core.Events;
 using MediatR;
 
-namespace AirplaneProject.Infra.CrossCutting.Bus
+namespace AirplaneProject.CrossCutting.Bus
 {
     public sealed class InMemoryBus : IMediatorHandler
     {

@@ -1,4 +1,5 @@
 ﻿using AirplaneProject.Domain.Interfaces;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace AirplaneProject.Domain.Bases

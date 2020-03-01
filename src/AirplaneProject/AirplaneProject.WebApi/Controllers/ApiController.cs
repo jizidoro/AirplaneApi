@@ -6,7 +6,7 @@ using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AirplaneProject.Services.Api.Controllers
+namespace AirplaneProject.WebApi.Controllers
 {
     public abstract class ApiController : ControllerBase
     {

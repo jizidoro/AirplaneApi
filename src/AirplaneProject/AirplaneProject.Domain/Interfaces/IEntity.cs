@@ -1,4 +1,6 @@
-﻿namespace AirplaneProject.Domain.Interfaces
+﻿using System;
+
+namespace AirplaneProject.Domain.Interfaces
 {
 	public interface IEntity
 	{

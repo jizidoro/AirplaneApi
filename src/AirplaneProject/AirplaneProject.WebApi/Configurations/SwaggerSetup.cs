@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
-namespace AirplaneProject.Services.Api.Configurations
+namespace AirplaneProject.WebApi.Configurations
 {
     public static class SwaggerSetup
     {

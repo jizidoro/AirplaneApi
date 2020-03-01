@@ -1,4 +1,4 @@
-﻿namespace AirplaneProject.Services.Api.Configurations
+﻿namespace AirplaneProject.WebApi.Configurations
 {
     public class AppSettings
     {

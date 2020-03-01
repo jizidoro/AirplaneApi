@@ -1,11 +1,12 @@
-using System;
+using AirplaneProject.Application.Dtos;
+using AirplaneProject.Application.Interfaces;
 using AirplaneProject.Core.Bus;
 using AirplaneProject.Core.Notifications;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AirplaneProject.Services.Api.Controllers
+namespace AirplaneProject.WebApi.Controllers
 {
     [Authorize]
     public class AirplaneController : ApiController
@@ -25,68 +26,59 @@ namespace AirplaneProject.Services.Api.Controllers
         [Route("Airplane-management")]
         public IActionResult Get()
         {
-            return Response(_AirplaneAppService.GetAll());
+            return Response(_AirplaneAppService.Listar());
         }
 
         [HttpGet]
         [AllowAnonymous]
-        [Route("Airplane-management/{id:guid}")]
-        public IActionResult Get(Guid id)
+        [Route("Airplane-management/{id:int}")]
+        public IActionResult Get(int id)
         {
-            var AirplaneViewModel = _AirplaneAppService.GetById(id);
+            var AirplaneDto = _AirplaneAppService.Obter(id);
 
-            return Response(AirplaneViewModel);
+            return Response(AirplaneDto);
         }     
 
         [HttpPost]
         [Authorize(Policy = "CanWriteAirplaneData")]
         [Route("Airplane-management")]
-        public IActionResult Post([FromBody]AirplaneViewModel AirplaneViewModel)
+        public IActionResult Post([FromBody]AirplaneIncluirDto AirplaneDto)
         {
             if (!ModelState.IsValid)
             {
                 NotifyModelStateErrors();
-                return Response(AirplaneViewModel);
+                return Response(AirplaneDto);
             }
 
-            _AirplaneAppService.Register(AirplaneViewModel);
+            _AirplaneAppService.Incluir(AirplaneDto);
 
-            return Response(AirplaneViewModel);
+            return Response(AirplaneDto);
         }
         
         [HttpPut]
         [Authorize(Policy = "CanWriteAirplaneData")]
         [Route("Airplane-management")]
-        public IActionResult Put([FromBody]AirplaneViewModel AirplaneViewModel)
+        public IActionResult Put([FromBody]AirplaneEditarDto AirplaneDto)
         {
             if (!ModelState.IsValid)
             {
                 NotifyModelStateErrors();
-                return Response(AirplaneViewModel);
+                return Response(AirplaneDto);
             }
 
-            _AirplaneAppService.Update(AirplaneViewModel);
+            _AirplaneAppService.Editar(AirplaneDto);
 
-            return Response(AirplaneViewModel);
+            return Response(AirplaneDto);
         }
 
         [HttpDelete]
         [Authorize(Policy = "CanRemoveAirplaneData")]
         [Route("Airplane-management")]
-        public IActionResult Delete(Guid id)
+        public IActionResult Delete([FromBody]AirplaneExcluirDto AirplaneDto)
         {
-            _AirplaneAppService.Remove(id);
+            _AirplaneAppService.Excluir(AirplaneDto);
             
             return Response();
-        }
-
-        [HttpGet]
-        [AllowAnonymous]
-        [Route("Airplane-management/history/{id:guid}")]
-        public IActionResult History(Guid id)
-        {
-            var AirplaneHistoryData = _AirplaneAppService.GetAllHistory(id);
-            return Response(AirplaneHistoryData);
         }
     }
 }

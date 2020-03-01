@@ -2,7 +2,7 @@
 using AirplaneProject.Core.Models.Validations;
 using AirplaneProject.Core.Repositories;
 using AirplaneProject.Core.Services;
-using AirplaneProject.CrossCutting.Identity;
+using AirplaneProject.CrossCutting.Models;
 using AirplaneProject.Infrastructure.Bases;
 using AirplaneProject.Infrastructure.Data;
 using AirplaneProject.Infrastructure.Repositories;
@@ -15,7 +15,7 @@ namespace AirplaneProject.CrossCutting.IoC
 {
     public static class NativeInjectorBootStraper
     {
-        public static void RegisterServices(this IServiceCollection services, IConfiguration config, bool isTest, IHostingEnvironment env)
+        public static void RegisterServices(this IServiceCollection services)
         {
             // AspNetUser
             services.AddScoped<IUser, AspNetUser>();
@@ -34,12 +34,6 @@ namespace AirplaneProject.CrossCutting.IoC
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-
-            if (!isTest)
-            {
-                services.AddDbContext<GestaoAirplaneContext>(options => options
-                    .UseSqlServer(config.GetConnectionString("DefaultConnection")));
-            }
         }
 
         public static void UpdateDatabase(IServiceScope scope)

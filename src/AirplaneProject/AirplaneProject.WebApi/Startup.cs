@@ -1,50 +1,65 @@
-using AutoMapper;
+using AirplaneProject.WebApi.Configurations;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Console;
-using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.Authentication;
-using Airplane.WebApi.Helpers;
-using AirplaneProject.CrossCutting.IoC;
-using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 
 namespace AirplaneProject.WebApi
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration, IHostingEnvironment env)
-        {
-            Configuration = configuration;
-            Env = env;
-        }
-
         public IConfiguration Configuration { get; }
-        public IHostingEnvironment Env { get; }
-        public static ILogger<ConsoleLoggerProvider> AppLogger = null;
-        public static ILoggerFactory loggerFactory = null;
+
+        public Startup(IHostEnvironment env)
+        {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", true, true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true);
+
+            if (env.IsDevelopment())
+            {
+                //builder.AddUserSecrets<Startup>();
+            }
+
+            builder.AddEnvironmentVariables();
+            Configuration = builder.Build();
+        }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddLogging(builder => builder
-                .AddConsole()
-                .AddFilter(level => level >= LogLevel.Trace)
-            );
+            // Setting DBContexts
+            services.AddDatabaseSetup(Configuration);
 
-            // configure basic authentication 
-            services.AddAuthentication("BasicAuthentication")
-                .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
-            
-            services.AddMvc();
+            // ASP.NET Identity Settings & JWT
+            services.AddIdentitySetup(Configuration);
 
-            services.RegisterServices(Configuration, false, Env);
+            // WebAPI Config
+            services.AddControllers();
+
+            // AutoMapper Settings
+            services.AddAutoMapperSetup();
+
+            // Authorization
+            services.AddAuthSetup(Configuration);
+
+            // Swagger Config
+            services.AddSwaggerSetup();
+
+            // Adding MediatR for Domain Events and Notifications
+            services.AddMediatR(typeof(Startup));
+
+            // ASP.NET HttpContext dependency
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            // .NET Native DI Abstraction
+            services.AddDependencyInjectionSetup();
         }
-        
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -55,17 +70,22 @@ namespace AirplaneProject.WebApi
 
             app.UseRouting();
 
+            app.UseCors(c =>
+            {
+                c.AllowAnyHeader();
+                c.AllowAnyMethod();
+                c.AllowAnyOrigin();
+            });
+
             app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
 
-            using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
-            {
-                NativeInjectorBootStraper.UpdateDatabase(scope);
-            }
+            app.UseSwaggerSetup();
         }
     }
 }
