@@ -139,33 +139,6 @@
     <value>Ocorreu um erro ao tentar salvar o registro no banco de dados, caso o problema persista, por favor entrar em contato com o suporte.</value>
   </data>
   <data name="MSG08" xml:space="preserve">
-    <value>Registro já existe com mesmo nome, por favor informe outro nome.</value>
-  </data>
-  <data name="MSG09" xml:space="preserve">
-    <value>Este registro não pode ser excluído, pois há alguma informação associada a ele.</value>
-  </data>
-  <data name="MSG10" xml:space="preserve">
-    <value>Registro já associado.</value>
-  </data>
-  <data name="MSG11" xml:space="preserve">
-    <value>Registros 'Não identificado' não podem ser alterados.</value>
-  </data>
-  <data name="MSG12" xml:space="preserve">
-    <value>Registros 'Não identificado' não podem ser excluídos.</value>
-  </data>
-  <data name="MSG13" xml:space="preserve">
-    <value>Associações com 'Não identificado' não podem ser desfeitas.</value>
-  </data>
-  <data name="MSG14" xml:space="preserve">
-    <value>Registro já existe com mesma chave.</value>
-  </data>
-  <data name="MSG15" xml:space="preserve">
-    <value>Registro já existe para a Unidade e Checksum informados. Registro não foi salvo.</value>
-  </data>
-  <data name="MSG16" xml:space="preserve">
-    <value>Dados de configuração não estão cadastrados. Importação não foi salva.</value>
-  </data>
-  <data name="MSG17" xml:space="preserve">
-    <value>Registro já existe com mesmo Código Sap e Código informados, por favor informe dados diferentes.</value>
+    <value>Registro já existe com mesmo codigo, por favor informe outro codigo.</value>
   </data>
 </root>
