@@ -1,0 +1,13 @@
+bin/
+obj/
+git/
+EsdArquivos/
+.vs/
+*.cache
+*.props
+*.targets
+*.json
+*.dll
+*.pdb
+*.cache
+*.props
