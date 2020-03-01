@@ -59,8 +59,8 @@ namespace AirplaneProject.WebApi.Configurations
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("CanWriteCustomerData", policy => policy.Requirements.Add(new ClaimRequirement("Customers", "Write")));
-                options.AddPolicy("CanRemoveCustomerData", policy => policy.Requirements.Add(new ClaimRequirement("Customers", "Remove")));
+                options.AddPolicy("CanWriteAirplaneData", policy => policy.Requirements.Add(new ClaimRequirement("Airplanes", "Write")));
+                options.AddPolicy("CanRemoveAirplaneData", policy => policy.Requirements.Add(new ClaimRequirement("Airplanes", "Remove")));
             });
         }
     }

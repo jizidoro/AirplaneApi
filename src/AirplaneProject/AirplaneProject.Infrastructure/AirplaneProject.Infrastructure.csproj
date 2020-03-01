@@ -28,7 +28,6 @@
   <ItemGroup>
     <Folder Include="Mappings\Views\" />
     <Folder Include="Repositories\Views\" />
-    <Folder Include="SeedData\" />
   </ItemGroup>
 
   <ItemGroup>

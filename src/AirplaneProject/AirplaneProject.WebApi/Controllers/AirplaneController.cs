@@ -1,22 +1,19 @@
 using AirplaneProject.Application.Dtos;
 using AirplaneProject.Application.Interfaces;
-using AirplaneProject.Core.Bus;
-using AirplaneProject.Core.Notifications;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace AirplaneProject.WebApi.Controllers
 {
     [Authorize]
-    public class AirplaneController : ApiController
+    public class AirplaneController : ControllerBase
     {
         private readonly IAirplaneAppService _AirplaneAppService;
 
         public AirplaneController(
-            IAirplaneAppService AirplaneAppService,
-            INotificationHandler<DomainNotification> notifications,
-            IMediatorHandler mediator) : base(notifications, mediator)
+            IAirplaneAppService AirplaneAppService)
         {
             _AirplaneAppService = AirplaneAppService;
         }
@@ -24,51 +21,49 @@ namespace AirplaneProject.WebApi.Controllers
         [HttpGet]
         [AllowAnonymous]
         [Route("Airplane-management")]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            return Response(_AirplaneAppService.Listar());
+            var result = await _AirplaneAppService.Listar();
+            return Ok(result);
         }
 
         [HttpGet]
         [AllowAnonymous]
         [Route("Airplane-management/{id:int}")]
-        public IActionResult Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            var AirplaneDto = _AirplaneAppService.Obter(id);
-
-            return Response(AirplaneDto);
+            var result = await _AirplaneAppService.Obter(id);
+            return Ok(result);
         }     
 
         [HttpPost]
         [Authorize(Policy = "CanWriteAirplaneData")]
         [Route("Airplane-management")]
-        public IActionResult Post([FromBody]AirplaneIncluirDto AirplaneDto)
+        public async Task<IActionResult> Post([FromBody]AirplaneIncluirDto AirplaneDto)
         {
             if (!ModelState.IsValid)
             {
-                NotifyModelStateErrors();
-                return Response(AirplaneDto);
+                return Ok(AirplaneDto);
             }
 
-            _AirplaneAppService.Incluir(AirplaneDto);
+            var result = await _AirplaneAppService.Incluir(AirplaneDto);
 
-            return Response(AirplaneDto);
+            return Ok(AirplaneDto);
         }
         
         [HttpPut]
         [Authorize(Policy = "CanWriteAirplaneData")]
         [Route("Airplane-management")]
-        public IActionResult Put([FromBody]AirplaneEditarDto AirplaneDto)
+        public async Task<IActionResult> Put([FromBody]AirplaneEditarDto AirplaneDto)
         {
             if (!ModelState.IsValid)
             {
-                NotifyModelStateErrors();
-                return Response(AirplaneDto);
+                return Ok(AirplaneDto);
             }
 
-            _AirplaneAppService.Editar(AirplaneDto);
+            var result = await _AirplaneAppService.Editar(AirplaneDto);
 
-            return Response(AirplaneDto);
+            return Ok(result);
         }
 
         [HttpDelete]
@@ -78,7 +73,7 @@ namespace AirplaneProject.WebApi.Controllers
         {
             _AirplaneAppService.Excluir(AirplaneDto);
             
-            return Response();
+            return Ok();
         }
     }
 }

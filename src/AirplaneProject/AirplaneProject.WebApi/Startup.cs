@@ -1,3 +1,4 @@
+using AirplaneProject.CrossCutting.IoC;
 using AirplaneProject.WebApi.Configurations;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -5,15 +6,27 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Console;
 
 namespace AirplaneProject.WebApi
 {
     public class Startup
     {
-        public IConfiguration Configuration { get; }
 
-        public Startup(IHostEnvironment env)
+
+        public Startup(IConfiguration configuration, IHostingEnvironment env)
+        {
+            Configuration = configuration;
+            Env = env;
+        }
+
+        public IConfiguration Configuration { get; }
+        public static IHostingEnvironment Env { get; set; }
+        public static ILogger<ConsoleLoggerProvider> AppLogger = null;
+        public static ILoggerFactory loggerFactory = null;
+
+        public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
@@ -31,6 +44,14 @@ namespace AirplaneProject.WebApi
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddLogging(builder => builder
+                .AddConsole()
+                .AddFilter(level => level >= LogLevel.Trace)
+            );
+            loggerFactory = services.BuildServiceProvider().GetService<ILoggerFactory>();
+            AppLogger = loggerFactory.CreateLogger<ConsoleLoggerProvider>();
+
+
             // Setting DBContexts
             services.AddDatabaseSetup(Configuration);
 
@@ -55,17 +76,14 @@ namespace AirplaneProject.WebApi
             // ASP.NET HttpContext dependency
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            // .NET Native DI Abstraction
-            services.AddDependencyInjectionSetup();
+            services.RegisterServices(Configuration, false, Env);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
 
+            app.UseDeveloperExceptionPage();
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -86,6 +104,11 @@ namespace AirplaneProject.WebApi
             });
 
             app.UseSwaggerSetup();
+
+            using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                NativeInjectorBootStraper.UpdateDatabase(scope);
+            }
         }
     }
 }

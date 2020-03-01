@@ -11,7 +11,7 @@ namespace AirplaneProject.Application.Validations
 	{
 		protected void ValidarNome()
 		{
-			RuleFor(v => v.Nome)
+			RuleFor(v => v.Codigo)
 				.NotEmpty().WithMessage(MensagensAplicacao.CAMPO_OBRIGATORIO)
 				.WithName("Nome");
 		}

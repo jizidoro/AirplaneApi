@@ -1,32 +1,29 @@
 ﻿using AirplaneProject.Application.Interfaces;
 using AirplaneProject.Application.Services;
-using AirplaneProject.Core.Bus;
 using AirplaneProject.Core.Interfaces;
 using AirplaneProject.Core.Models.Validations;
-using AirplaneProject.Core.Notifications;
 using AirplaneProject.Core.Repositories;
 using AirplaneProject.Core.Services;
-using AirplaneProject.CrossCutting.Authorization;
-using AirplaneProject.CrossCutting.Bus;
 using AirplaneProject.CrossCutting.Models;
+using AirplaneProject.CrossCutting.Security;
 using AirplaneProject.Infrastructure.Bases;
 using AirplaneProject.Infrastructure.Data;
 using AirplaneProject.Infrastructure.Repositories;
-using MediatR;
-using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AirplaneProject.CrossCutting.IoC
 {
     public static class NativeInjectorBootStraper
     {
-        public static void RegisterServices(this IServiceCollection services)
+        public static void RegisterServices(this IServiceCollection services, IConfiguration config, bool isTest, IHostingEnvironment env)
         {
             // AspNetUser
             services.AddScoped<IUser, AspNetUser>();
-
-            // Application - Extensions
+            
+            // Application - Services
             services.AddScoped<IAirplaneAppService, AirplaneAppService>();
 
             // Core - Services
@@ -35,20 +32,16 @@ namespace AirplaneProject.CrossCutting.IoC
             // Core - Validations
             services.AddScoped<IAirplaneValidation, AirplaneValidation>();
 
+            services.AddSingleton<ISecurityService, SecurityServiceFake>();
+            services.AddScoped<IBasicSecurityService, BasicSecurityService>();
             // Infra - Data
             services.AddScoped<IAirplaneRepository, AirplaneRepository>();
+
+
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
             
-            // ASP.NET Authorization Polices
-            services.AddSingleton<IAuthorizationHandler, ClaimsRequirementHandler>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-            // Domain - Events
-            services.AddScoped<INotificationHandler<DomainNotification>, DomainNotificationHandler>();
-
-
-            // Infra - Identity
-            services.AddScoped<IUser, AspNetUser>();
         }
 
         public static void UpdateDatabase(IServiceScope scope)
