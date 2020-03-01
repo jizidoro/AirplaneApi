@@ -12,4 +12,9 @@
     <Folder Include="Repositories\Views\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="8.6.2" />
+    <PackageReference Include="MediatR" Version="8.0.1" />
+  </ItemGroup>
+
 </Project>

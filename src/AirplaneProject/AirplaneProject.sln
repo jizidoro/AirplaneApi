@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirplaneProject.WebApi", "AirplaneProject.WebApi\AirplaneProject.WebApi.csproj", "{1A2E3CEF-5495-40AF-B91E-5C87A371FAE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirplaneProject.WebApi", "AirplaneProject.WebApi\AirplaneProject.WebApi.csproj", "{1A2E3CEF-5495-40AF-B91E-5C87A371FAE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirplaneProject.Core", "AirplaneProject.Core\AirplaneProject.Core.csproj", "{85D2CE0E-4A21-43DE-BC73-2F9D67A325E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirplaneProject.Core", "AirplaneProject.Core\AirplaneProject.Core.csproj", "{85D2CE0E-4A21-43DE-BC73-2F9D67A325E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirplaneProject.CrossCutting", "AirplaneProject.CrossCutting\AirplaneProject.CrossCutting.csproj", "{62AE26B7-C8A7-417F-9199-3B19FDA7C811}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirplaneProject.CrossCutting", "AirplaneProject.CrossCutting\AirplaneProject.CrossCutting.csproj", "{62AE26B7-C8A7-417F-9199-3B19FDA7C811}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirplaneProject.Domain", "AirplaneProject.Domain\AirplaneProject.Domain.csproj", "{0BD1EC25-4A16-4545-8042-A6CBE5F304B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirplaneProject.Domain", "AirplaneProject.Domain\AirplaneProject.Domain.csproj", "{0BD1EC25-4A16-4545-8042-A6CBE5F304B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirplaneProject.Infrastructure", "AirplaneProject.Infrastructure\AirplaneProject.Infrastructure.csproj", "{92CAC773-152C-42FE-AE70-588D23F461E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirplaneProject.Infrastructure", "AirplaneProject.Infrastructure\AirplaneProject.Infrastructure.csproj", "{92CAC773-152C-42FE-AE70-588D23F461E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Airplane.Application", "Airplane.Application\Airplane.Application.csproj", "{CECB7F63-EFFB-4E17-A4D5-3658273C0BF4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{92CAC773-152C-42FE-AE70-588D23F461E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92CAC773-152C-42FE-AE70-588D23F461E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92CAC773-152C-42FE-AE70-588D23F461E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CECB7F63-EFFB-4E17-A4D5-3658273C0BF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CECB7F63-EFFB-4E17-A4D5-3658273C0BF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CECB7F63-EFFB-4E17-A4D5-3658273C0BF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CECB7F63-EFFB-4E17-A4D5-3658273C0BF4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
