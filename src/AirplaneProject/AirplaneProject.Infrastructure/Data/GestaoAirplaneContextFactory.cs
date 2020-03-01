@@ -14,7 +14,7 @@ namespace AirplaneProject.Infrastructure.Data
 			// get the configuration from the app settings
 			var config = new ConfigurationBuilder()
 			   .SetBasePath(Directory.GetCurrentDirectory())
-			   .AddJsonFile("appsettings.Development.json")
+			   .AddJsonFile("appsettings.json")
 			   .Build();
 
 			// define the database to use

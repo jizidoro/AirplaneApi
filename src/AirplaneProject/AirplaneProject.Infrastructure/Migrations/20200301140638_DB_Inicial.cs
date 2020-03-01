@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AirplaneProject.Infrastructure.Migrations
@@ -28,6 +29,9 @@ namespace AirplaneProject.Infrastructure.Migrations
                 table: "Airplanes",
                 column: "Codigo",
                 unique: true);
+
+            var sqlFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Migrations", "20200301140638_DB_Inicial_Up.sql");
+            migrationBuilder.Sql(File.ReadAllText(sqlFile));
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
