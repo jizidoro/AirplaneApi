@@ -1,7 +1,8 @@
 ﻿using AirplaneProject.Core.Interfaces;
+using AirplaneProject.Infrastructure.Data;
 using System.Threading.Tasks;
 
-namespace AirplaneProject.Infrastructure.Data
+namespace AirplaneProject.Infrastructure.UoW
 {
 	public class UnitOfWork : IUnitOfWork
 	{

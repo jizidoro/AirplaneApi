@@ -6,10 +6,9 @@ namespace AirplaneProject.Core.Interfaces
 {
     public interface IUser
     {
-        string Chave { get; }
+        string Name { get; }
         bool IsAuthenticated();
         IEnumerable<Claim> GetClaimsIdentity();
-        bool HasClaim(string claimType, string claimValue);
 
     }
 }

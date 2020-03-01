@@ -3,34 +3,36 @@ using AirplaneProject.Domain.Enums;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 
 namespace AirplaneProject.CrossCutting.Models
 {
     public class AspNetUser : IUser
     {
-        private readonly IHttpContextAccessor contextAccessor;
+        private readonly IHttpContextAccessor _accessor;
 
-        public AspNetUser(IHttpContextAccessor contextAccessor)
+        public AspNetUser(IHttpContextAccessor accessor)
         {
-            this.contextAccessor = contextAccessor;
+            _accessor = accessor;
         }
 
-        public string Chave { get => contextAccessor.HttpContext.User.Identity.Name; }
+        public string Name => GetName();
 
-        public IEnumerable<Claim> GetClaimsIdentity()
+        private string GetName()
         {
-            return contextAccessor.HttpContext.User.Claims;
+            return _accessor.HttpContext.User.Identity.Name ??
+                   _accessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
         }
 
         public bool IsAuthenticated()
         {
-            return contextAccessor.HttpContext.User.Identity.IsAuthenticated;
+            return _accessor.HttpContext.User.Identity.IsAuthenticated;
         }
-        
-        public bool HasClaim(string claimType, string claimValue)
+
+        public IEnumerable<Claim> GetClaimsIdentity()
         {
-            return contextAccessor.HttpContext.User.HasClaim(claimType, claimValue);
+            return _accessor.HttpContext.User.Claims;
         }
     }
 }

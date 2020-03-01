@@ -1,6 +1,7 @@
 ﻿using AirplaneProject.Application.Interfaces;
 using AirplaneProject.Application.Services;
 using AirplaneProject.Core.Bus;
+using AirplaneProject.Core.Events;
 using AirplaneProject.Core.Interfaces;
 using AirplaneProject.Core.Models.Validations;
 using AirplaneProject.Core.Notifications;
@@ -11,7 +12,10 @@ using AirplaneProject.CrossCutting.Bus;
 using AirplaneProject.CrossCutting.Models;
 using AirplaneProject.Infrastructure.Bases;
 using AirplaneProject.Infrastructure.Data;
+using AirplaneProject.Infrastructure.EventSourcing;
 using AirplaneProject.Infrastructure.Repositories;
+using AirplaneProject.Infrastructure.Repository.EventSourcing;
+using AirplaneProject.Infrastructure.UoW;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
@@ -23,29 +27,28 @@ namespace AirplaneProject.CrossCutting.IoC
     {
         public static void RegisterServices(this IServiceCollection services)
         {
-            // AspNetUser
-            services.AddScoped<IUser, AspNetUser>();
+            // Domain Bus (Mediator)
+            services.AddScoped<IMediatorHandler, InMemoryBus>();
 
-            // Application - Extensions
-            services.AddScoped<IAirplaneAppService, AirplaneAppService>();
-
-            // Core - Services
-            services.AddScoped<IAirplaneService, AirplaneService>();
-
-            // Core - Validations
-            services.AddScoped<IAirplaneValidation, AirplaneValidation>();
-
-            // Infra - Data
-            services.AddScoped<IAirplaneRepository, AirplaneRepository>();
-            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
-            
             // ASP.NET Authorization Polices
             services.AddSingleton<IAuthorizationHandler, ClaimsRequirementHandler>();
+
+            // Application
+            services.AddScoped<IAirplaneAppService, AirplaneAppService>();
 
             // Domain - Events
             services.AddScoped<INotificationHandler<DomainNotification>, DomainNotificationHandler>();
 
+
+            // Infra - Data
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            // Infra - Data EventSourcing
+            services.AddScoped<IEventStoreRepository, EventStoreSqlRepository>();
+            services.AddScoped<IEventStore, SqlEventStore>();
+            services.AddScoped<EventStoreSqlContext>();
+
+            services.AddScoped<GestaoAirplaneContext>();
 
             // Infra - Identity
             services.AddScoped<IUser, AspNetUser>();
