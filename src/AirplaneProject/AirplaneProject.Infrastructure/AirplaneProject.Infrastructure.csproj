@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200301134353_DB_Inicial.cs" />
+    <Compile Remove="Migrations\20200301134353_DB_Inicial.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.2">
       <PrivateAssets>all</PrivateAssets>
@@ -27,21 +32,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Migrations\20200217183030_AS004_AddVwSobressalente_Down.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Migrations\20200217183030_AS004_AddVwSobressalente_Up.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Migrations\20200226193534_AS004_AlterarSobressalenteView_Down.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Migrations\20200226193534_AS004_AlterarSobressalenteView_Up.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Migrations\20200228183907_AS004_AlterarMrpMaterialEstocado_Up.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <Folder Include="Mappings\Views\" />
+    <Folder Include="Migrations\" />
+    <Folder Include="Repositories\Views\" />
+    <Folder Include="SeedData\" />
   </ItemGroup>
 
 </Project>

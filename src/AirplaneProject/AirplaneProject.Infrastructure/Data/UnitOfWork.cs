@@ -5,9 +5,9 @@ namespace AirplaneProject.Infrastructure.Data
 {
 	public class UnitOfWork : IUnitOfWork
 	{
-		private readonly GestaoEsdContext context;
+		private readonly GestaoAirplaneContext context;
 
-		public UnitOfWork(GestaoEsdContext context)
+		public UnitOfWork(GestaoAirplaneContext context)
 		{
 			this.context = context;
 		}

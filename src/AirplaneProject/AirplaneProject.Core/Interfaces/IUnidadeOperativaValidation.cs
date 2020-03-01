@@ -3,12 +3,12 @@ using System.Threading.Tasks;
 
 namespace AirplaneProject.Core.Interfaces
 {
-	public interface IUnidadeOperativaValidation
+	public interface IAirplaneValidation
 	{
-		Task<ISingleResult<UnidadeOperativa>> ValidarInclusao(UnidadeOperativa entity);
+		Task<ISingleResult<Airplane>> ValidarInclusao(Airplane entity);
 
-		Task<ISingleResult<UnidadeOperativa>> ValidarEdicao(UnidadeOperativa entity);
+		Task<ISingleResult<Airplane>> ValidarEdicao(Airplane entity);
 
-		Task<ISingleResult<UnidadeOperativa>> ValidarExclusao(int id);
+		Task<ISingleResult<Airplane>> ValidarExclusao(int id);
 	}
 }

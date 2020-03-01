@@ -13,10 +13,10 @@ namespace AirplaneProject.Infrastructure.Bases
 	public class Repository<TEntity> : IRepository<TEntity>
 		where TEntity : Entity
 	{
-		protected readonly GestaoEsdContext Db;
+		protected readonly GestaoAirplaneContext Db;
 		protected readonly DbSet<TEntity> DbSet;
 
-		public Repository(GestaoEsdContext context)
+		public Repository(GestaoAirplaneContext context)
 		{
 			Db = context;
 			DbSet = Db.Set<TEntity>();

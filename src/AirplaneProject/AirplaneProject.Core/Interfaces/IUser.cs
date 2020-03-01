@@ -10,7 +10,6 @@ namespace AirplaneProject.Core.Interfaces
         bool IsAuthenticated();
         IEnumerable<Claim> GetClaimsIdentity();
         bool HasClaim(string claimType, string claimValue);
-        bool TemPermissao(EnumRecursos recurso);
 
     }
 }

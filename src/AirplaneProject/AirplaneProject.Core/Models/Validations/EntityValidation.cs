@@ -3,7 +3,6 @@ using AirplaneProject.Core.Messages;
 using AirplaneProject.Core.Models.Results;
 using AirplaneProject.Domain.Bases;
 using System;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace AirplaneProject.Core.Models.Validations
@@ -29,33 +28,15 @@ namespace AirplaneProject.Core.Models.Validations
 			return new SingleResult<TEntity>(entity);
 		}
 
-		public async Task<ISingleResult<TEntity>> RegistroComMesmoNome(int id, string nome)
+		public async Task<ISingleResult<TEntity>> RegistroComMesmoCodigo(int id, string codigo)
 		{
-			var result = await repository.ValueExists(id, nome);
+			var result = await repository.ValueExists(id, codigo);
 			if (result)
 			{
 				return new SingleResult<TEntity>(MensagensNegocio.MSG08);
 			}
 
 			return new SingleResult<TEntity>();
-		}
-
-		public virtual async Task<ISingleResult<TEntity>> RegistroComAssociacao(int id, Expression<Func<TEntity, bool>> predicate, string include = null)
-		{
-			try
-			{
-				var result = await repository.ChildrenExists(id, predicate, include);
-				if (result)
-				{
-					return new SingleResult<TEntity>(MensagensNegocio.MSG09);
-				}
-
-				return new SingleResult<TEntity>();
-			}
-			catch (Exception ex)
-			{
-				return new SingleResult<TEntity>(ex);
-			}
 		}
     }
 }

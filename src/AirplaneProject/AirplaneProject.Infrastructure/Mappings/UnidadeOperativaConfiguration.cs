@@ -4,17 +4,17 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace AirplaneProject.Infrastructure.Mappings
 {
-	public class UnidadeOperativaConfiguration : IEntityTypeConfiguration<UnidadeOperativa>
+	public class AirplaneConfiguration : IEntityTypeConfiguration<Airplane>
 	{
-		public void Configure(EntityTypeBuilder<UnidadeOperativa> builder)
+		public void Configure(EntityTypeBuilder<Airplane> builder)
 		{
 			builder.HasKey(c => c.Id);
-			builder.Property(c => c.Nome).HasMaxLength(20).IsRequired();
-			builder.Property(c => c.Codigo).HasMaxLength(20).IsRequired();
-			builder.Property(c => c.Descricao).HasMaxLength(255).IsRequired();
-			builder.HasMany(c => c.Ativos).WithOne(c => c.UnidadeOperativa).IsRequired();
+			builder.Property(c => c.Codigo).HasMaxLength(255).IsRequired();
+			builder.Property(c => c.Modelo).HasMaxLength(255).IsRequired();
+			builder.Property(c => c.QuantidadePassageiros).IsRequired();
+			builder.Property(c => c.DataRegistro).IsRequired();
 
-			builder.HasIndex(c => c.Codigo).HasName("IX_UnidadesOperativas_Codigo").IsUnique();
+			builder.HasIndex(c => c.Codigo).HasName("IX_Airplanes_Codigo").IsUnique();
 		}
 	}
 }

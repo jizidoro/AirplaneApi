@@ -11,8 +11,6 @@ namespace AirplaneProject.Core.Interfaces
 	{
 		Task<ISingleResult<TEntity>> RegistroExiste(int id, params string[] includes);
 
-		Task<ISingleResult<TEntity>> RegistroComMesmoNome(int id, string nome);
-
-		Task<ISingleResult<TEntity>> RegistroComAssociacao(int id, Expression<Func<TEntity, bool>> predicate, string include = null);
+		Task<ISingleResult<TEntity>> RegistroComMesmoCodigo(int id, string codigo);
 	}
 }

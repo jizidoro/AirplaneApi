@@ -3,12 +3,12 @@ using System.Threading.Tasks;
 
 namespace AirplaneProject.Core.Interfaces
 {
-	public interface IUnidadeOperativaService
+	public interface IAirplaneService
 	{
-		Task<ISingleResult<UnidadeOperativa>> Incluir(UnidadeOperativa entity);
+		Task<ISingleResult<Airplane>> Incluir(Airplane entity);
 
-		Task<ISingleResult<UnidadeOperativa>> Editar(UnidadeOperativa entity);
+		Task<ISingleResult<Airplane>> Editar(Airplane entity);
 
-		Task<ISingleResult<UnidadeOperativa>> Excluir(int id);
+		Task<ISingleResult<Airplane>> Excluir(int id);
 	}
 }

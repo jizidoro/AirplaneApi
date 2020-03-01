@@ -8,4 +8,8 @@
     <ProjectReference Include="..\AirplaneProject.Domain\AirplaneProject.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Repositories\Views\" />
+  </ItemGroup>
+
 </Project>

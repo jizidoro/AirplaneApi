@@ -27,12 +27,7 @@ namespace AirplaneProject.CrossCutting.Identity
         {
             return contextAccessor.HttpContext.User.Identity.IsAuthenticated;
         }
-
-        public bool TemPermissao(EnumRecursos recurso)
-        {
-            return HasClaim("Recurso", Enum.GetName(typeof(EnumRecursos), recurso));
-        }
-
+        
         public bool HasClaim(string claimType, string claimValue)
         {
             return contextAccessor.HttpContext.User.HasClaim(claimType, claimValue);
