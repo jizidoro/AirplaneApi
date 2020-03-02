@@ -64,9 +64,9 @@ namespace AirplaneProject.Application.Services
 			return resultDto;
 		}
 
-		public async Task<ISingleResultDto<EntityDto>> Excluir(AirplaneExcluirDto dto)
+		public async Task<ISingleResultDto<EntityDto>> Excluir(int id)
 		{
-			var result = await _service.Excluir(dto.Id);
+			var result = await _service.Excluir(id);
 
 			var resultDto = new SingleResultDto<EntityDto>(result);
 			resultDto.SetData(result, Mapper);

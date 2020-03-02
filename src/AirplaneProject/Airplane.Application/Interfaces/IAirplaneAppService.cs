@@ -8,8 +8,8 @@ namespace AirplaneProject.Application.Interfaces
     {
 		Task<IListResultDto<AirplaneDto>> Listar();
 		Task<ISingleResultDto<AirplaneDto>> Obter(int id);
-		Task<ISingleResultDto<EntityDto>> Incluir(AirplaneIncluirDto evento);
-		Task<ISingleResultDto<EntityDto>> Editar(AirplaneEditarDto evento);
-		Task<ISingleResultDto<EntityDto>> Excluir(AirplaneExcluirDto evento);
+		Task<ISingleResultDto<EntityDto>> Incluir(AirplaneIncluirDto dto);
+		Task<ISingleResultDto<EntityDto>> Editar(AirplaneEditarDto dto);
+		Task<ISingleResultDto<EntityDto>> Excluir(int id);
 	}
 }

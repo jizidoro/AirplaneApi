@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace AirplaneProject.WebApi.Controllers
 {
-    [Authorize]
     public class AirplaneController : ControllerBase
     {
         private readonly IAirplaneAppService _AirplaneAppService;
@@ -20,25 +19,26 @@ namespace AirplaneProject.WebApi.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        [Route("Airplane-management")]
+        [Route("Airplane")]
         public async Task<IActionResult> Get()
         {
             var result = await _AirplaneAppService.Listar();
-            return Ok(result);
+            return Ok(result.Data);
         }
 
         [HttpGet]
         [AllowAnonymous]
-        [Route("Airplane-management/{id:int}")]
+        [Route("Airplane/{id:int}")]
         public async Task<IActionResult> Get(int id)
         {
             var result = await _AirplaneAppService.Obter(id);
-            return Ok(result);
+            return Ok(result.Data);
         }     
 
         [HttpPost]
-        [Authorize(Policy = "CanWriteAirplaneData")]
-        [Route("Airplane-management")]
+        //[Authorize(Policy = "CanWriteAirplaneData")]
+        [AllowAnonymous]
+        [Route("Airplane")]
         public async Task<IActionResult> Post([FromBody]AirplaneIncluirDto AirplaneDto)
         {
             if (!ModelState.IsValid)
@@ -52,8 +52,9 @@ namespace AirplaneProject.WebApi.Controllers
         }
         
         [HttpPut]
-        [Authorize(Policy = "CanWriteAirplaneData")]
-        [Route("Airplane-management")]
+        //[Authorize(Policy = "CanWriteAirplaneData")]
+        [AllowAnonymous]
+        [Route("Airplane")]
         public async Task<IActionResult> Put([FromBody]AirplaneEditarDto AirplaneDto)
         {
             if (!ModelState.IsValid)
@@ -67,11 +68,12 @@ namespace AirplaneProject.WebApi.Controllers
         }
 
         [HttpDelete]
-        [Authorize(Policy = "CanRemoveAirplaneData")]
-        [Route("Airplane-management")]
-        public IActionResult Delete([FromBody]AirplaneExcluirDto AirplaneDto)
+        //[Authorize(Policy = "CanRemoveAirplaneData")]
+        [AllowAnonymous]
+        [Route("Airplane/{id:int}")]
+        public IActionResult Delete(int id)
         {
-            _AirplaneAppService.Excluir(AirplaneDto);
+            _AirplaneAppService.Excluir(id);
             
             return Ok();
         }

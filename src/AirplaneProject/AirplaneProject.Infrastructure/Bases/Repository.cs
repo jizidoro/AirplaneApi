@@ -28,35 +28,35 @@ namespace AirplaneProject.Infrastructure.Bases
 		}
 
 		public virtual async Task<TEntity> GetById(int id)
-		{   
+		{
 			return await GetById(id, projection: null, includes: null);
 		}
 
-        public virtual async Task<TEntity> GetById(int id, params string[] includes)
-        {
-            return await GetById(id, null, includes);
-        }
+		public virtual async Task<TEntity> GetById(int id, params string[] includes)
+		{
+			return await GetById(id, null, includes);
+		}
 
-        public virtual async Task<TEntity> GetById(int id, Expression<Func<TEntity, TEntity>> projection)
-        {
-	        return await GetById(id, projection, includes: null);
-        }
+		public virtual async Task<TEntity> GetById(int id, Expression<Func<TEntity, TEntity>> projection)
+		{
+			return await GetById(id, projection, includes: null);
+		}
 
-        public virtual async Task<TEntity> GetById(int id, Expression<Func<TEntity, TEntity>> projection, params string[] includes)
+		public virtual async Task<TEntity> GetById(int id, Expression<Func<TEntity, TEntity>> projection, params string[] includes)
 		{
 			var query = GetAll();
 			if (projection != null)
 			{
-				query = query.Select(projection);                
+				query = query.Select(projection);
 			}
 
-            if (includes != null && includes.Length > 0)
-            {
-                foreach (var include in includes)
-                {
-                    query = query.Include(include);
-                }
-            }
+			if (includes != null && includes.Length > 0)
+			{
+				foreach (var include in includes)
+				{
+					query = query.Include(include);
+				}
+			}
 
 			query = query.Where(p => p.Id == id);
 
@@ -119,14 +119,14 @@ namespace AirplaneProject.Infrastructure.Bases
 			var allChild = query
 				.Where(p => p.Id == id)
 				.Where(predicate).AnyAsync();
-			
+
 			return allChild;
 		}
 
 		public virtual async Task<bool> IsUnique(Expression<Func<TEntity, bool>> predicate)
 		{
 			var query = GetAll();
-			
+
 			var existe = await query
 				.Where(predicate)
 				.AnyAsync();
@@ -168,7 +168,7 @@ namespace AirplaneProject.Infrastructure.Bases
 			DbSet.Remove(DbSet.Find(id));
 		}
 
-        public async Task<int> SaveChanges()
+		public async Task<int> SaveChanges()
 		{
 			return await Db.SaveChangesAsync();
 		}
@@ -189,10 +189,10 @@ namespace AirplaneProject.Infrastructure.Bases
 			return DbSet.AsNoTracking().Select(projection);
 		}
 
-        public async Task<TEntity> Get(Expression<Func<TEntity, bool>> predicate)
-        {
-            return await DbSet.SingleOrDefaultAsync(predicate);
-        }
+		public async Task<TEntity> Get(Expression<Func<TEntity, bool>> predicate)
+		{
+			return await DbSet.SingleOrDefaultAsync(predicate);
+		}
 
 		public async Task<IEnumerable<LookupDto>> GetLookup(Expression<Func<TEntity, bool>> predicate)
 		{

@@ -16,11 +16,7 @@ namespace AirplaneProject.WebApi.Configurations
             {
                 s.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Version = "v1",
-                    Title = "Equinox Project",
-                    Description = "Equinox API Swagger surface",
-                    Contact = new OpenApiContact { Name = "Eduardo Pires", Email = "contato@eduardopires.net.br", Url = new Uri("http://www.eduardopires.net.br") },
-                    License = new OpenApiLicense() { Name = "MIT", Url = new Uri("https://github.com/EduardoPires/EquinoxProject/blob/master/LICENSE") }
+                    Version = "v1"                    
                 });
 
                 s.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -61,7 +57,7 @@ namespace AirplaneProject.WebApi.Configurations
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Equinox Project");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Project");
             });
         }
     }
