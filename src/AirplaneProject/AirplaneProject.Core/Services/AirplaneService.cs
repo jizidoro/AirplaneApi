@@ -26,11 +26,11 @@ namespace AirplaneProject.Core.Services
 		{
 			try
 			{
-				var validacao = await validator.ValidarInclusao(entity);
-				if (!validacao.Sucesso)
-				{
-					return validacao;
-				}
+				//var validacao = await validator.ValidarInclusao(entity);
+				//if (!validacao.Sucesso)
+				//{
+				//	return validacao;
+				//}
 				entity.DataRegistro = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("E. South America Standard Time"));
 				await repository.Add(entity);
 

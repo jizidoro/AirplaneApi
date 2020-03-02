@@ -24,7 +24,7 @@ namespace AirplaneProject.Core.Models.Results
 		public SingleResult(Exception ex)
 		{
 			this.Sucesso = false;
-			this.Mensagem = MensagensNegocio.ResourceManager.GetString("MSG07");
+			//this.Mensagem = MensagensNegocio.ResourceManager.GetString("MSG07");
 		}
 
 		public SingleResult(TEntity data)

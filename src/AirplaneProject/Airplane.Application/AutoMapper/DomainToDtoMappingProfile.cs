@@ -3,7 +3,6 @@ using AirplaneProject.Application.Dtos;
 using AirplaneProject.Domain.Bases;
 using AirplaneProject.Domain.Models;
 using AutoMapper;
-using System;
 
 namespace AirplaneProject.Application.AutoMapper
 {

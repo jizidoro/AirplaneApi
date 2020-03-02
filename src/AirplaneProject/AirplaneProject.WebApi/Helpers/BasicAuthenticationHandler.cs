@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace Airplane.WebApi.Helpers
+namespace AirplaneProject.WebApi.Helpers
 {
 	public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions>
 	{

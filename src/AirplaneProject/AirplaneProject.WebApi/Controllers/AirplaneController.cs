@@ -18,7 +18,6 @@ namespace AirplaneProject.WebApi.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
         [Route("Airplane")]
         public async Task<IActionResult> Get()
         {
@@ -27,7 +26,6 @@ namespace AirplaneProject.WebApi.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
         [Route("Airplane/{id:int}")]
         public async Task<IActionResult> Get(int id)
         {
@@ -35,47 +33,43 @@ namespace AirplaneProject.WebApi.Controllers
             return Ok(result.Data);
         }     
 
-        [HttpPost]
-        //[Authorize(Policy = "CanWriteAirplaneData")]
-        [AllowAnonymous]
         [Route("Airplane")]
-        public async Task<IActionResult> Post([FromBody]AirplaneIncluirDto AirplaneDto)
+        [HttpPost]
+        public async Task<IActionResult> Incluir([FromBody]AirplaneIncluirDto dto)
         {
             if (!ModelState.IsValid)
             {
-                return Ok(AirplaneDto);
+                return Ok(dto);
             }
 
-            var result = await _AirplaneAppService.Incluir(AirplaneDto);
+            var result = await _AirplaneAppService.Incluir(dto);
 
-            return Ok(AirplaneDto);
+            return Ok();
         }
         
         [HttpPut]
         //[Authorize(Policy = "CanWriteAirplaneData")]
-        [AllowAnonymous]
         [Route("Airplane")]
-        public async Task<IActionResult> Put([FromBody]AirplaneEditarDto AirplaneDto)
+        public async Task<IActionResult> Put([FromBody]AirplaneEditarDto dto)
         {
             if (!ModelState.IsValid)
             {
-                return Ok(AirplaneDto);
+                return Ok(dto);
             }
 
-            var result = await _AirplaneAppService.Editar(AirplaneDto);
+            var result = await _AirplaneAppService.Editar(dto);
 
-            return Ok(result);
+            return Ok();
         }
 
         [HttpDelete]
         //[Authorize(Policy = "CanRemoveAirplaneData")]
-        [AllowAnonymous]
         [Route("Airplane/{id:int}")]
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _AirplaneAppService.Excluir(id);
             
-            return Ok(result);
+            return Ok();
         }
     }
 }
