@@ -26,11 +26,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Mappings\Views\" />
-    <Folder Include="Repositories\Views\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="Migrations\20200301140638_DB_Inicial_Up.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

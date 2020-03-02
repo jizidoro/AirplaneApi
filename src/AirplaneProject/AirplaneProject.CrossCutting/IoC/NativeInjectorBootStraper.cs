@@ -5,7 +5,6 @@ using AirplaneProject.Core.Models.Validations;
 using AirplaneProject.Core.Repositories;
 using AirplaneProject.Core.Services;
 using AirplaneProject.CrossCutting.Models;
-using AirplaneProject.CrossCutting.Security;
 using AirplaneProject.Infrastructure.Bases;
 using AirplaneProject.Infrastructure.Data;
 using AirplaneProject.Infrastructure.Repositories;
@@ -32,14 +31,9 @@ namespace AirplaneProject.CrossCutting.IoC
             // Core - Validations
             services.AddScoped<IAirplaneValidation, AirplaneValidation>();
 
-            services.AddSingleton<ISecurityService, SecurityServiceFake>();
-            services.AddScoped<IBasicSecurityService, BasicSecurityService>();
             // Infra - Data
             services.AddScoped<IAirplaneRepository, AirplaneRepository>();
-
-
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-            
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         }

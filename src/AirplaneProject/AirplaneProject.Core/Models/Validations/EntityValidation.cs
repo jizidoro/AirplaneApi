@@ -30,11 +30,11 @@ namespace AirplaneProject.Core.Models.Validations
 
 		public async Task<ISingleResult<TEntity>> RegistroComMesmoCodigo(int id, string codigo)
 		{
-			//var result = await repository.ValueExists(id, codigo);
-			//if (result)
-			//{
-			//	return new SingleResult<TEntity>(MensagensNegocio.MSG08);
-			//}
+			var result = await repository.ValueExists(id, codigo);
+			if (result)
+			{
+				return new SingleResult<TEntity>(MensagensNegocio.MSG08);
+			}
 
 			return new SingleResult<TEntity>();
 		}
