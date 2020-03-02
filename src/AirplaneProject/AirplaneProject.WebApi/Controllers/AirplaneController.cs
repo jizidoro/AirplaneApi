@@ -44,7 +44,7 @@ namespace AirplaneProject.WebApi.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return Ok(dto);
+                return BadRequest(dto);
             }
 
             var result = await _AirplaneAppService.Incluir(dto);
@@ -66,7 +66,7 @@ namespace AirplaneProject.WebApi.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return Ok(dto);
+                return BadRequest(dto);
             }
 
             var result = await _AirplaneAppService.Editar(dto);
