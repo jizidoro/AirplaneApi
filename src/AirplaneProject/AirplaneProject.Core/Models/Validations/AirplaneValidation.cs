@@ -19,8 +19,8 @@ namespace AirplaneProject.Core.Models.Validations
 
 		public async Task<ISingleResult<Airplane>> ValidarSeExisteMesmoCodigo(Airplane entity)
 		{
-			var result = await RegistroComMesmoCodigo(entity.Id, entity.Codigo);
-			if (!result.Sucesso)
+			var result = await repository.RegistroComMesmoCodigo(entity.Id, entity.Codigo);
+			if (result.Sucesso)
 			{
 				return result;
 			}
@@ -59,7 +59,6 @@ namespace AirplaneProject.Core.Models.Validations
 			{
 				return registroExiste;
 			}
-
 
 			return new SingleResult<Airplane>();
 		}

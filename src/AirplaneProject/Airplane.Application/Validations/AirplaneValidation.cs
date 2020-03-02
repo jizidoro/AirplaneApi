@@ -9,11 +9,25 @@ namespace AirplaneProject.Application.Validations
 	public class AirplaneValidation<TDto> : DtoValidation<TDto>
 		where TDto : AirplaneDto
 	{
-		protected void ValidarNome()
+		protected void ValidarCodigo()
 		{
 			RuleFor(v => v.Codigo)
 				.NotEmpty().WithMessage(MensagensAplicacao.CAMPO_OBRIGATORIO)
-				.WithName("Nome");
+				.WithName("Codigo");
+		}
+
+		protected void ValidarModelo()
+		{
+			RuleFor(v => v.Modelo)
+				.NotEmpty().WithMessage(MensagensAplicacao.CAMPO_OBRIGATORIO)
+				.WithName("Modelo");
+		}
+
+		protected void ValidarQuantidadePassageiros()
+		{
+			RuleFor(v => v.QuantidadePassageiros)
+				.NotEmpty().WithMessage(MensagensAplicacao.CAMPO_OBRIGATORIO)
+				.WithName("QuantidadePassageiros");
 		}
 	}
 }

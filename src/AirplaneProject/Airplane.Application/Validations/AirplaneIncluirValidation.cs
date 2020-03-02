@@ -6,7 +6,9 @@ namespace AirplaneProject.Application.Validations
 	{
 		public AirplaneIncluirValidation()
 		{
-			ValidarNome();
+			ValidarCodigo();
+			ValidarModelo();
+			ValidarQuantidadePassageiros();
 		}
 	}
 }
