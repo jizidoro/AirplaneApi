@@ -1,3 +1,3 @@
 # AirplaneApi
 
-just run in visual studio 2019
+just mar AirplaneProject.WebApi as startup project and run visual studio 2019
