@@ -6,9 +6,11 @@ Visual Studio support
 
     Visual Studio 2019 (v16.4)
     
-Included runtimes
+Framework
 
-    .NET Core Runtime 3.1.2
+    .NET Core 3.1
     
 
-to run just select AirplaneProject.WebApi as startup project and run visual studio 2019
+to run
+
+go to tools=> nuget package managaer => package manager console select default project "AirplaneProject.Infrastructure" and execute "update-database" then select "AirplaneProject.WebApi" as startup project and run visual studio 2019
