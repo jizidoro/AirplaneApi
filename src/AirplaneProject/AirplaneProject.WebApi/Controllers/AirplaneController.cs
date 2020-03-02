@@ -71,11 +71,11 @@ namespace AirplaneProject.WebApi.Controllers
         //[Authorize(Policy = "CanRemoveAirplaneData")]
         [AllowAnonymous]
         [Route("Airplane/{id:int}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            _AirplaneAppService.Excluir(id);
+            var result = await _AirplaneAppService.Excluir(id);
             
-            return Ok();
+            return Ok(result);
         }
     }
 }

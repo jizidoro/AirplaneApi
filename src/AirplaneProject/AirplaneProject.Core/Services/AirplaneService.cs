@@ -74,11 +74,11 @@ namespace AirplaneProject.Core.Services
 		{
 			try
 			{
-				var validacao = await validator.ValidarExclusao(id);
-				if (!validacao.Sucesso)
-				{
-					return validacao;
-				}
+				//var validacao = await validator.ValidarExclusao(id);
+				//if (!validacao.Sucesso)
+				//{
+				//	return validacao;
+				//}
 
 				repository.Remove(id);
 
