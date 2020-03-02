@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AirplaneProject.Application.Messages {
+namespace Airplaneproject.Application.Messages {
     using System;
     
     
@@ -66,6 +66,15 @@ namespace AirplaneProject.Application.Messages {
         public static string CAMPO_DATA_MAIOR_QUE_HOJE {
             get {
                 return ResourceManager.GetString("CAMPO_DATA_MAIOR_QUE_HOJE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O campo {PropertyName} precisa ser maior que ou igual a zero.
+        /// </summary>
+        public static string CAMPO_MAIOR_IGUAL_ZERO {
+            get {
+                return ResourceManager.GetString("CAMPO_MAIOR_IGUAL_ZERO", resourceCulture);
             }
         }
         

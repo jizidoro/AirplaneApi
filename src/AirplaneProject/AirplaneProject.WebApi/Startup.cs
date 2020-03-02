@@ -1,5 +1,7 @@
+using AirplaneProject.Application.Bases;
 using AirplaneProject.CrossCutting.IoC;
 using AirplaneProject.WebApi.Configurations;
+using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -77,6 +79,13 @@ namespace AirplaneProject.WebApi
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.RegisterServices(Configuration, false, Env);
+
+            services.AddMvc()
+                .AddApplicationPart(typeof(Startup).Assembly)
+                .AddFluentValidation(fv => {
+                    fv.RunDefaultMvcValidationAfterFluentValidationExecutes = false;
+                    fv.RegisterValidatorsFromAssemblyContaining<DtoValidation<EntityDto>>();
+                });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

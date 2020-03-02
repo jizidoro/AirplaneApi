@@ -1,6 +1,6 @@
-﻿using AirplaneProject.Application.Bases;
+﻿using Airplaneproject.Application.Messages;
+using AirplaneProject.Application.Bases;
 using AirplaneProject.Application.Dtos;
-using AirplaneProject.Application.Messages;
 using FluentValidation;
 using System;
 
@@ -13,6 +13,7 @@ namespace AirplaneProject.Application.Validations
 		{
 			RuleFor(v => v.Codigo)
 				.NotEmpty().WithMessage(MensagensAplicacao.CAMPO_OBRIGATORIO)
+				.MaximumLength(255).WithMessage(MensagensAplicacao.TAMANHO_ESPECIFICO_CAMPO)
 				.WithName("Codigo");
 		}
 
@@ -20,6 +21,7 @@ namespace AirplaneProject.Application.Validations
 		{
 			RuleFor(v => v.Modelo)
 				.NotEmpty().WithMessage(MensagensAplicacao.CAMPO_OBRIGATORIO)
+				.MaximumLength(255).WithMessage(MensagensAplicacao.TAMANHO_ESPECIFICO_CAMPO)
 				.WithName("Modelo");
 		}
 
@@ -27,6 +29,7 @@ namespace AirplaneProject.Application.Validations
 		{
 			RuleFor(v => v.QuantidadePassageiros)
 				.NotEmpty().WithMessage(MensagensAplicacao.CAMPO_OBRIGATORIO)
+				.GreaterThanOrEqualTo(0).WithMessage(MensagensAplicacao.CAMPO_MAIOR_IGUAL_ZERO)
 				.WithName("QuantidadePassageiros");
 		}
 	}
