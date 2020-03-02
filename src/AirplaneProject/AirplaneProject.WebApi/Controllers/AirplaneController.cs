@@ -1,7 +1,5 @@
 using AirplaneProject.Application.Dtos;
 using AirplaneProject.Application.Interfaces;
-using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
