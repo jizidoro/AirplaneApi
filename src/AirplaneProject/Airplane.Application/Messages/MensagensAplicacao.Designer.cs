@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Airplane.Application.Messages {
+namespace AirplaneProject.Application.Messages {
     using System;
     
     
