@@ -20,7 +20,7 @@ namespace AirplaneProject.Core.Models.Validations
 		public async Task<ISingleResult<Airplane>> ValidarSeExisteMesmoCodigo(Airplane entity)
 		{
 			var result = await repository.RegistroComMesmoCodigo(entity.Id, entity.Codigo);
-			if (result.Sucesso)
+			if (!result.Sucesso)
 			{
 				return result;
 			}

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using AirplaneProject.Core.Models.Results;
+using AirplaneProject.Core.Messages;
 
 namespace AirplaneProject.Infrastructure.Repositories
 {
@@ -19,11 +20,11 @@ namespace AirplaneProject.Infrastructure.Repositories
 
 		public async Task<ISingleResult<Airplane>> RegistroComMesmoCodigo(int id, string codigo)
 		{
-			var obj = await Db.Airplanes
-				.Where(p => p.Id == id && p.Codigo.Equals(codigo))
-				.FirstOrDefaultAsync();
+			var existe = await Db.Airplanes
+				.Where(p => p.Id != id && p.Codigo.Equals(codigo))
+				.AnyAsync();
 
-			return new SingleResult<Airplane>(obj);
+			return existe ? new SingleResult<Airplane>(MensagensNegocio.MSG08) : new SingleResult<Airplane>();
 		}
 	}
 }

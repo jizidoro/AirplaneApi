@@ -28,14 +28,8 @@ namespace AirplaneProject.WebApi.Controllers
         public async Task<IActionResult> Get(int id)
         {
             var result = await _AirplaneAppService.Obter(id);
-            if (result.Sucesso)
-            {
-                return Ok(result.Data);
-            }
-            else
-            {
-                return BadRequest(result);
-            }
+
+            return Ok(result);
         }
 
         [Route("Airplane")]
@@ -48,14 +42,8 @@ namespace AirplaneProject.WebApi.Controllers
             }
 
             var result = await _AirplaneAppService.Incluir(dto);
-            if (result.Sucesso)
-            {
-                return Ok(result);
-            }
-            else
-            {
-                return BadRequest(result);
-            }
+
+            return Ok(result);
 
         }
         
@@ -71,14 +59,7 @@ namespace AirplaneProject.WebApi.Controllers
 
             var result = await _AirplaneAppService.Editar(dto);
 
-            if (result.Sucesso)
-            {
-                return Ok(result);
-            }
-            else
-            {
-                return BadRequest(result);
-            }
+            return Ok(result);
         }
 
         [HttpDelete]
@@ -88,14 +69,7 @@ namespace AirplaneProject.WebApi.Controllers
         {
             var result = await _AirplaneAppService.Excluir(id);
 
-            if (result.Sucesso)
-            {
-                return Ok(result);
-            }
-            else
-            {
-                return BadRequest(result);
-            }
+            return Ok(result);
         }
     }
 }
