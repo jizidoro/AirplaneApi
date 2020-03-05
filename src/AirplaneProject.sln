@@ -13,8 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirplaneProject.Domain", "A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirplaneProject.Infrastructure", "AirplaneProject.Infrastructure\AirplaneProject.Infrastructure.csproj", "{92CAC773-152C-42FE-AE70-588D23F461E4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Airplane.Application", "Airplane.Application\Airplane.Application.csproj", "{CECB7F63-EFFB-4E17-A4D5-3658273C0BF4}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{EEA0FC5B-3787-444F-8CB0-9693917D3515}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Presentation", "1 - Presentation", "{D9BDCCEA-62AC-441B-9713-2615DEDC757E}"
@@ -33,11 +31,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.2 - CrossCutting", "5.2 -
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{597E8C1B-7401-4A6E-8857-46D5A273FD82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirplaneProject.ComponentTests", "..\tests\AirplaneProject.ComponentTests\AirplaneProject.ComponentTests.csproj", "{96C64575-BCFE-4364-B996-E6968E26FAD7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirplaneProject.ComponentTests", "..\tests\AirplaneProject.ComponentTests\AirplaneProject.ComponentTests.csproj", "{96C64575-BCFE-4364-B996-E6968E26FAD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirplaneProject.IntegrationTests", "..\tests\AirplaneProject.IntegrationTests\AirplaneProject.IntegrationTests.csproj", "{DB2CFE1A-84EB-4106-85A1-619F359458EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirplaneProject.IntegrationTests", "..\tests\AirplaneProject.IntegrationTests\AirplaneProject.IntegrationTests.csproj", "{DB2CFE1A-84EB-4106-85A1-619F359458EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirplaneProject.UnitTests", "..\tests\AirplaneProject.UnitTests\AirplaneProject.UnitTests.csproj", "{6EDA117E-8258-4BE7-9E4C-648E50799C5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirplaneProject.UnitTests", "..\tests\AirplaneProject.UnitTests\AirplaneProject.UnitTests.csproj", "{6EDA117E-8258-4BE7-9E4C-648E50799C5E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirplaneProject.Application", "AirplaneProject.Application\AirplaneProject.Application.csproj", "{70DC891C-F8CC-4F4E-8A07-34C4D24535BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,10 +65,6 @@ Global
 		{92CAC773-152C-42FE-AE70-588D23F461E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92CAC773-152C-42FE-AE70-588D23F461E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92CAC773-152C-42FE-AE70-588D23F461E4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CECB7F63-EFFB-4E17-A4D5-3658273C0BF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CECB7F63-EFFB-4E17-A4D5-3658273C0BF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CECB7F63-EFFB-4E17-A4D5-3658273C0BF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CECB7F63-EFFB-4E17-A4D5-3658273C0BF4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{96C64575-BCFE-4364-B996-E6968E26FAD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{96C64575-BCFE-4364-B996-E6968E26FAD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96C64575-BCFE-4364-B996-E6968E26FAD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -81,6 +77,10 @@ Global
 		{6EDA117E-8258-4BE7-9E4C-648E50799C5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6EDA117E-8258-4BE7-9E4C-648E50799C5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6EDA117E-8258-4BE7-9E4C-648E50799C5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70DC891C-F8CC-4F4E-8A07-34C4D24535BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70DC891C-F8CC-4F4E-8A07-34C4D24535BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70DC891C-F8CC-4F4E-8A07-34C4D24535BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70DC891C-F8CC-4F4E-8A07-34C4D24535BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -91,7 +91,6 @@ Global
 		{62AE26B7-C8A7-417F-9199-3B19FDA7C811} = {39B36EDC-7717-4F65-A81B-5176269E1DAB}
 		{0BD1EC25-4A16-4545-8042-A6CBE5F304B3} = {3EBA0177-BABE-46B8-9FB4-8F6A0C2DB60C}
 		{92CAC773-152C-42FE-AE70-588D23F461E4} = {71353853-4021-478B-85FE-7C9A81AED798}
-		{CECB7F63-EFFB-4E17-A4D5-3658273C0BF4} = {82BD874B-D0A1-4802-8278-ADD9693DB589}
 		{D9BDCCEA-62AC-441B-9713-2615DEDC757E} = {EEA0FC5B-3787-444F-8CB0-9693917D3515}
 		{11D86A52-BF6B-47C7-A20F-DDA6362DED07} = {EEA0FC5B-3787-444F-8CB0-9693917D3515}
 		{82BD874B-D0A1-4802-8278-ADD9693DB589} = {EEA0FC5B-3787-444F-8CB0-9693917D3515}
@@ -102,6 +101,7 @@ Global
 		{96C64575-BCFE-4364-B996-E6968E26FAD7} = {597E8C1B-7401-4A6E-8857-46D5A273FD82}
 		{DB2CFE1A-84EB-4106-85A1-619F359458EE} = {597E8C1B-7401-4A6E-8857-46D5A273FD82}
 		{6EDA117E-8258-4BE7-9E4C-648E50799C5E} = {597E8C1B-7401-4A6E-8857-46D5A273FD82}
+		{70DC891C-F8CC-4F4E-8A07-34C4D24535BA} = {82BD874B-D0A1-4802-8278-ADD9693DB589}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A0CB2A5E-CB45-4F87-A992-E93F38A7FA54}

@@ -1,4 +1,4 @@
-﻿using Airplaneproject.Application.Messages;
+﻿using AirplaneProject.Application.Messages;
 using AirplaneProject.Application.Bases;
 using AirplaneProject.Application.Dtos;
 using FluentValidation;

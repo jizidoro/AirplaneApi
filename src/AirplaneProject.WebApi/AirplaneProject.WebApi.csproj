@@ -41,7 +41,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Airplane.Application\Airplane.Application.csproj" />
+    <ProjectReference Include="..\AirplaneProject.Application\AirplaneProject.Application.csproj" />
     <ProjectReference Include="..\AirplaneProject.CrossCutting\AirplaneProject.CrossCutting.csproj" />
   </ItemGroup>
 

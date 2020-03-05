@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Airplaneproject.Application.Messages {
+namespace AirplaneProject.Application.Messages {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Airplaneproject.Application.Messages {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Airplane.Application.Messages.MensagensAplicacao", typeof(MensagensAplicacao).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AirplaneProject.Application.Messages.MensagensAplicacao", typeof(MensagensAplicacao).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
