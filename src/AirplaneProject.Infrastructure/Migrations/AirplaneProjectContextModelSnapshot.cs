@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AirplaneProject.Infrastructure.Migrations
 {
-    [DbContext(typeof(GestaoAirplaneContext))]
-    partial class GestaoAirplaneContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(AirplaneProjectContext))]
+    partial class AirplaneProjectContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {

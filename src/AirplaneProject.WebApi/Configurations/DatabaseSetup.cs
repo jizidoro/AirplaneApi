@@ -12,7 +12,7 @@ namespace AirplaneProject.WebApi.Configurations
         {
             if (services == null) throw new ArgumentNullException(nameof(services));
             
-            services.AddDbContext<GestaoAirplaneContext>(options =>
+            services.AddDbContext<AirplaneProjectContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
         }

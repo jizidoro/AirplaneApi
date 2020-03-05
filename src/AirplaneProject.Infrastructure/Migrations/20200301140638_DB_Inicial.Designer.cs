@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AirplaneProject.Infrastructure.Migrations
 {
-    [DbContext(typeof(GestaoAirplaneContext))]
+    [DbContext(typeof(AirplaneProjectContext))]
     [Migration("20200301140638_DB_Inicial")]
     partial class DB_Inicial
     {

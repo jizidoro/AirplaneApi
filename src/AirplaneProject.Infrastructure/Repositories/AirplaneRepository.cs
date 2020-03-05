@@ -13,7 +13,7 @@ namespace AirplaneProject.Infrastructure.Repositories
 {
 	public class AirplaneRepository : Repository<Airplane>, IAirplaneRepository
 	{
-		public AirplaneRepository(GestaoAirplaneContext context)
+		public AirplaneRepository(AirplaneProjectContext context)
 			: base(context)
 		{
 		}

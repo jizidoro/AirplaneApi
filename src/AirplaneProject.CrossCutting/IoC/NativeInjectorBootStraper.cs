@@ -40,7 +40,7 @@ namespace AirplaneProject.CrossCutting.IoC
 
         public static void UpdateDatabase(IServiceScope scope)
         {
-            var context = scope.ServiceProvider.GetService<GestaoAirplaneContext>();
+            var context = scope.ServiceProvider.GetService<AirplaneProjectContext>();
             context.Database.Migrate();
         }
     }

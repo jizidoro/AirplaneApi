@@ -5,11 +5,11 @@ using System.IO;
 
 namespace AirplaneProject.Infrastructure.Data
 {
-	public class GestaoAirplaneContextFactory : IDesignTimeDbContextFactory<GestaoAirplaneContext>
+	public class AirplaneProjectContextFactory : IDesignTimeDbContextFactory<AirplaneProjectContext>
 	{
-		public GestaoAirplaneContext CreateDbContext(string[] args)
+		public AirplaneProjectContext CreateDbContext(string[] args)
 		{
-			var optionsBuilder = new DbContextOptionsBuilder<GestaoAirplaneContext>();
+			var optionsBuilder = new DbContextOptionsBuilder<AirplaneProjectContext>();
 
 			// get the configuration from the app settings
 			var config = new ConfigurationBuilder()
@@ -20,7 +20,7 @@ namespace AirplaneProject.Infrastructure.Data
 			// define the database to use
 			optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"));
 
-			return new GestaoAirplaneContext(optionsBuilder.Options);
+			return new AirplaneProjectContext(optionsBuilder.Options);
 		}
 	}
 }

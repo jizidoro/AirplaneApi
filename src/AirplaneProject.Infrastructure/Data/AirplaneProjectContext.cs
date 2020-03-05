@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AirplaneProject.Infrastructure.Data
 {
-	public class GestaoAirplaneContext : DbContext
+	public class AirplaneProjectContext : DbContext
 	{
 		private const string JSON_PATH = "Automacao.Infrastructure.SeedData";
 
-		public GestaoAirplaneContext(DbContextOptions<GestaoAirplaneContext> options)
+		public AirplaneProjectContext(DbContextOptions<AirplaneProjectContext> options)
 			: base(options)
 		{			
 		}

@@ -3,12 +3,6 @@ namespace AirplaneProject.IntegrationTests.EntityFrameworkTests
     using System.Linq;
     using System.Threading.Tasks;
     using Aggregates.Internal;
-    using Domain.Customers;
-    using Domain.Customers.ValueObjects;
-    using Domain.Security;
-    using Domain.Security.ValueObjects;
-    using AirplaneProject.Infrastructure.EntityFrameworkDataAccess;
-    using AirplaneProject.Infrastructure.EntityFrameworkDataAccess.Repositories;
     using Microsoft.EntityFrameworkCore;
     using Xunit;
 
@@ -17,7 +11,7 @@ namespace AirplaneProject.IntegrationTests.EntityFrameworkTests
         [Fact]
         public async Task Add_ChangesDatabase()
         {
-            var options = new DbContextOptionsBuilder<MangaContext>()
+            var options = new DbContextOptionsBuilder<Airpla>()
                 .UseInMemoryDatabase(databaseName: "test_database")
                 .Options;
 
