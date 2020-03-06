@@ -1,4 +1,4 @@
-namespace UnitTests.UseCaseTests.Deposit
+namespace AirplaneProject.UnitTests.UseCaseTests.Deposit
 {
     using System.Linq;
     using System.Threading.Tasks;

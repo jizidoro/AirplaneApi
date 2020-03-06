@@ -1,4 +1,4 @@
-namespace UnitTests.UseCaseTests.CloseAccount
+namespace AirplaneProject.UnitTests.UseCaseTests.CloseAccount
 {
     using Xunit;
 

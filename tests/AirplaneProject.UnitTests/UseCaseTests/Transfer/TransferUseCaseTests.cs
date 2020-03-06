@@ -1,4 +1,4 @@
-namespace UnitTests.UseCaseTests.Transfer
+namespace AirplaneProject.UnitTests.UseCaseTests.Transfer
 {
     using System.Linq;
     using System.Threading.Tasks;
@@ -6,7 +6,7 @@ namespace UnitTests.UseCaseTests.Transfer
     using Application.UseCases;
     using Domain.Accounts.ValueObjects;
     using Infrastructure.InMemoryDataAccess.Presenters;
-    using UnitTests.TestFixtures;
+    using AirplaneProject.UnitTests.TestFixtures;
     using Xunit;
 
     public sealed class TransferUseCaseTests : IClassFixture<StandardFixture>

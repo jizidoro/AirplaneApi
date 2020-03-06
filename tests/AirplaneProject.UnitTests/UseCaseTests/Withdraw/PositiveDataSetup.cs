@@ -1,4 +1,4 @@
-namespace UnitTests.UseCaseTests.Withdraw
+namespace AirplaneProject.UnitTests.UseCaseTests.Withdraw
 {
     using Xunit;
 

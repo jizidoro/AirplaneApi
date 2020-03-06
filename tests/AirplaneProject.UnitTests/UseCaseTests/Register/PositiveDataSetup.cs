@@ -1,4 +1,4 @@
-namespace UnitTests.UseCaseTests.Register
+namespace AirplaneProject.UnitTests.UseCaseTests.Register
 {
     using Xunit;
 

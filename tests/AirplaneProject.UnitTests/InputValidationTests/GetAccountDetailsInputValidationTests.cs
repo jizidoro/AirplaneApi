@@ -1,4 +1,4 @@
-namespace UnitTests.InputValidationTests
+namespace AirplaneProject.UnitTests.InputValidationTests
 {
     using System;
     using Application.Boundaries.GetAccountDetails;

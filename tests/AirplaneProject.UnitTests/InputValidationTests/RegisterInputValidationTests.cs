@@ -1,4 +1,4 @@
-namespace UnitTests.InputValidationTests
+namespace AirplaneProject.UnitTests.InputValidationTests
 {
     using Application.Boundaries.Register;
     using Domain.Accounts.ValueObjects;

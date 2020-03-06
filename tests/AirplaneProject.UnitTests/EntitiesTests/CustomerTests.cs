@@ -1,4 +1,4 @@
-namespace UnitTests.EntitiesTests
+namespace AirplaneProject.UnitTests.EntitiesTests
 {
     using Domain.Customers;
     using Domain.Customers.ValueObjects;

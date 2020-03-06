@@ -1,4 +1,4 @@
-namespace UnitTests.PresenterTests
+namespace AirplaneProject.UnitTests.PresenterTests
 {
     using System.Net;
     using Application.Boundaries.Register;

@@ -1,4 +1,4 @@
-namespace UnitTests.UseCaseTests.CloseAccount
+namespace AirplaneProject.UnitTests.UseCaseTests.CloseAccount
 {
     using System.Linq;
     using System.Threading.Tasks;
