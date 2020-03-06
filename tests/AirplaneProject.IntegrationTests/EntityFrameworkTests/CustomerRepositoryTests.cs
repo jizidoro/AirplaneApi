@@ -1,63 +1,65 @@
 namespace AirplaneProject.IntegrationTests.EntityFrameworkTests
 {
+    using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using Aggregates.Internal;
+    using AirplaneProject.Application.Services;
+    using AirplaneProject.Core.Models.Validations;
+    using AirplaneProject.Core.Services;
+    using AirplaneProject.Domain.Models;
     using AirplaneProject.Infrastructure.Data;
+    using AirplaneProject.Infrastructure.Repositories;
+    using AirplaneProject.Integration.Tests.Helpers;
     using Microsoft.EntityFrameworkCore;
     using Xunit;
 
-    public sealed class CustomerRepositoryTests
+    public sealed class AirplaneRepositoryTests
     {
-        //[Fact]
-        //public async Task Add_ChangesDatabase()
-        //{
-        //    var options = new DbContextOptionsBuilder<AirplaneProjectContext>()
-        //        .UseInMemoryDatabase(databaseName: "test_database")
-        //        .Options;
+        [Fact]
+        public async Task Add_ChangesDatabase()
+        {
+            var options = new DbContextOptionsBuilder<AirplaneProjectContext>()
+                .UseInMemoryDatabase(databaseName: "test_database")
+                .Options;
 
-        //    var factory = new EntityFactory();
 
-        //    var customer = factory.NewCustomer(
-        //        new SSN("198608177955"),
-        //        new Name("Ivan Paulovich"));
+            var teste = new Airplane();
+            teste.Codigo = "123";
+            teste.Modelo = "234";
+            teste.DataRegistro = new DateTime();
+            teste.QuantidadePassageiros = 456;
 
-        //    var user = factory.NewUser(
-        //        customer.Id,
-        //        new ExternalUserId("github/ivanpaulovich"));
+            using (var context = new AirplaneProjectContext(options))
+            {
+                context.Database.EnsureCreated();
 
-        //    using (var context = new MangaContext(options))
-        //    {
-        //        context.Database.EnsureCreated();
+                var airplaneRepository = new AirplaneRepository(context);
+                var uow = new UnitOfWork(context);
+                var airplaneValidator = new AirplaneValidation(airplaneRepository);
+                var airplaneService = new AirplaneService(airplaneRepository, airplaneValidator, uow);
+                await airplaneService.Incluir(teste);
 
-        //        var userRepository = new UserRepository(context);
-        //        await userRepository.Add(user);
+                Assert.Equal(1, context.Airplanes.Count());
+            }
+        }
 
-        //        var customerRepository = new CustomerRepository(context);
-        //        await customerRepository.Add(customer);
+        [Fact]
+        public async Task Get_ReturnsAirplane()
+        {
+            var options = new DbContextOptionsBuilder<AirplaneProjectContext>()
+                .UseInMemoryDatabase(databaseName: "test_database")
+                .Options;
 
-        //        Assert.Equal(2, context.Customers.Count());
-        //    }
-        //}
+            Airplane airplane = null;
 
-        //[Fact]
-        //public async Task Get_ReturnsCustomer()
-        //{
-        //    var options = new DbContextOptionsBuilder<MangaContext>()
-        //        .UseInMemoryDatabase(databaseName: "test_database")
-        //        .Options;
-
-        //    ICustomer customer = null;
-
-        //    using (var context = new MangaContext(options))
-        //    {
-        //        context.Database.EnsureCreated();
-
-        //        var repository = new CustomerRepository(context);
-        //        customer = await repository.GetBy(SeedData.DefaultCustomerId);
-
-        //        Assert.NotNull(customer);
-        //    }
-        //}
+            using (var context = new AirplaneProjectContext(options))
+            {
+                context.Database.EnsureCreated();
+                Utilities.InitializeDbForTests(context);
+                var repository = new AirplaneRepository(context);
+                airplane = await repository.GetById(1);
+                Assert.NotNull(airplane);
+            }
+        }
     }
 }
