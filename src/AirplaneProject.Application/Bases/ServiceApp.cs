@@ -24,10 +24,5 @@ namespace AirplaneProject.Application.Bases
 		{
 			this.mapper = mapper;
 		}
-
-		public async Task<IEnumerable<LookupDto>> ObterLookup(IQueryable<Domain.Interfaces.IEntity> query)
-		{
-			return new List<LookupDto>();
-		}
 	}
 }
