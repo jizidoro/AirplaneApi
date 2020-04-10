@@ -3,11 +3,14 @@ using AirplaneProject.CrossCutting.IoC;
 using AirplaneProject.WebApi.Configurations;
 using FluentValidation.AspNetCore;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
 
@@ -16,29 +19,21 @@ namespace AirplaneProject.WebApi
     public class Startup
     {
 
-
-        public Startup(IConfiguration configuration, IHostingEnvironment env)
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
             Env = env;
         }
 
         public IConfiguration Configuration { get; }
-        public static IHostingEnvironment Env { get; set; }
-        public static ILogger<ConsoleLoggerProvider> AppLogger = null;
-        public static ILoggerFactory loggerFactory = null;
+        public static IWebHostEnvironment Env { get; set; }
 
-        public Startup(IHostingEnvironment env)
+        public Startup(IWebHostEnvironment env)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", true, true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true);
-
-            if (env.IsDevelopment())
-            {
-                //builder.AddUserSecrets<Startup>();
-            }
 
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
@@ -46,12 +41,14 @@ namespace AirplaneProject.WebApi
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddLogging(builder => builder
-                .AddConsole()
-                .AddFilter(level => level >= LogLevel.Trace)
-            );
-            loggerFactory = services.BuildServiceProvider().GetService<ILoggerFactory>();
-            AppLogger = loggerFactory.CreateLogger<ConsoleLoggerProvider>();
+            services.AddControllersWithViews();
+            services.AddRazorPages();
+            services.AddAuthorization(options =>
+            {
+                options.DefaultPolicy = new AuthorizationPolicyBuilder()
+                  .RequireAuthenticatedUser()
+                  .Build();
+            });
 
 
             // Setting DBContexts
@@ -78,21 +75,33 @@ namespace AirplaneProject.WebApi
             // ASP.NET HttpContext dependency
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            services.RegisterServices(Configuration, false, Env);
-
-            services.AddMvc()
-                .AddApplicationPart(typeof(Startup).Assembly)
-                .AddFluentValidation(fv => {
-                    fv.RunDefaultMvcValidationAfterFluentValidationExecutes = false;
-                    fv.RegisterValidatorsFromAssemblyContaining<DtoValidation<EntityDto>>();
-                });
+            services.RegisterServices(Configuration, false);
+            
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            }).AddCookie(options =>
+            {
+                options.LoginPath = new PathString("/Autenticacao/Login");
+                options.AccessDeniedPath = new PathString("/Error/401");
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
 
-            app.UseDeveloperExceptionPage();
-            
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+                app.UseHsts();
+            }
+
             app.UseHttpsRedirection();
 
             app.UseRouting();

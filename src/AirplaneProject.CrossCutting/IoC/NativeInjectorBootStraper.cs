@@ -17,7 +17,7 @@ namespace AirplaneProject.CrossCutting.IoC
 {
     public static class NativeInjectorBootStraper
     {
-        public static void RegisterServices(this IServiceCollection services, IConfiguration config, bool isTest, IHostingEnvironment env)
+        public static void RegisterServices(this IServiceCollection services, IConfiguration config, bool isTest)
         {
             // AspNetUser
             services.AddScoped<IUser, AspNetUser>();
