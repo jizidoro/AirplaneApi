@@ -1,5 +1,7 @@
 using AirplaneProject.Application.Bases;
+using AirplaneProject.Core.Services;
 using AirplaneProject.CrossCutting.IoC;
+using AirplaneProject.Domain.Models;
 using AirplaneProject.WebApi.Configurations;
 using FluentValidation.AspNetCore;
 using MediatR;
@@ -13,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
+using Microsoft.Extensions.Options;
 
 namespace AirplaneProject.WebApi
 {
@@ -41,6 +44,14 @@ namespace AirplaneProject.WebApi
 
         public void ConfigureServices(IServiceCollection services)
         {
+            // requires using Microsoft.Extensions.Options
+            services.Configure<BookstoreDatabaseSettings>(
+                Configuration.GetSection(nameof(BookstoreDatabaseSettings)));
+
+            services.AddSingleton<IBookstoreDatabaseSettings>(sp =>
+                sp.GetRequiredService<IOptions<BookstoreDatabaseSettings>>().Value);
+
+
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddAuthorization(options =>
@@ -74,6 +85,7 @@ namespace AirplaneProject.WebApi
 
             // ASP.NET HttpContext dependency
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<BookService>();
 
             services.RegisterServices(Configuration, false);
             
