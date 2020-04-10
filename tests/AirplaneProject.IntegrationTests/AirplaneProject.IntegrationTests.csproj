@@ -28,7 +28,10 @@
     <ProjectReference Include="..\..\src\AirplaneProject.Application\AirplaneProject.Application.csproj" />
     <ProjectReference Include="..\..\src\AirplaneProject.Core\AirplaneProject.Core.csproj" />
     <ProjectReference Include="..\..\src\AirplaneProject.Domain\AirplaneProject.Domain.csproj" />
-    <ProjectReference Include="..\..\src\AirplaneProject.Infrastructure\AirplaneProject.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="EntityFrameworkTests\" />
   </ItemGroup>
 
 </Project>

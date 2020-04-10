@@ -7,7 +7,6 @@
   <ItemGroup>
     <ProjectReference Include="..\AirplaneProject.Application\AirplaneProject.Application.csproj" />
     <ProjectReference Include="..\AirplaneProject.Core\AirplaneProject.Core.csproj" />
-    <ProjectReference Include="..\AirplaneProject.Infrastructure\AirplaneProject.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -18,7 +18,6 @@
   <ItemGroup>
     <ProjectReference Include="..\AirplaneProject.Core\AirplaneProject.Core.csproj" />
     <ProjectReference Include="..\AirplaneProject.Domain\AirplaneProject.Domain.csproj" />
-    <ProjectReference Include="..\AirplaneProject.Infrastructure\AirplaneProject.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,6 +33,12 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MensagensAplicacao.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Dtos\" />
+    <Folder Include="Services\" />
+    <Folder Include="Validations\" />
   </ItemGroup>
 
 </Project>

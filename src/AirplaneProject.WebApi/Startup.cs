@@ -61,10 +61,7 @@ namespace AirplaneProject.WebApi
                   .Build();
             });
 
-
-            // Setting DBContexts
-            services.AddDatabaseSetup(Configuration);
-
+            
             // ASP.NET Identity Settings & JWT
             services.AddIdentitySetup(Configuration);
 
@@ -106,7 +103,6 @@ namespace AirplaneProject.WebApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
             }
             else
             {
@@ -135,10 +131,6 @@ namespace AirplaneProject.WebApi
 
             app.UseSwaggerSetup();
 
-            using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
-            {
-                NativeInjectorBootStraper.UpdateDatabase(scope);
-            }
         }
     }
 }
