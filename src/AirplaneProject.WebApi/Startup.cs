@@ -1,5 +1,6 @@
 using AirplaneProject.Application.Bases;
-using AirplaneProject.Core.Services;
+using AirplaneProject.Core.Usecases;
+using AirplaneProject.Core.Usecases.AirplaneUsecase;
 using AirplaneProject.CrossCutting.IoC;
 using AirplaneProject.Domain.Models;
 using AirplaneProject.WebApi.Configurations;
@@ -85,8 +86,7 @@ namespace AirplaneProject.WebApi
 
             // ASP.NET HttpContext dependency
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddSingleton<BookService>();
-
+            
             services.RegisterServices(Configuration, false);
             
             services.AddAuthentication(options =>

@@ -1,13 +1,13 @@
+using AirplaneProject.Application.Services;
+using AirplaneProject.Core.Usecases.AirplaneUsecase;
+
 namespace AirplaneProject.IntegrationTests.EntityFrameworkTests
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using AirplaneProject.Application.AutoMapper;
     using AirplaneProject.Application.Dtos;
-    using AirplaneProject.Application.Services;
     using AirplaneProject.Core.Models.Validations;
-    using AirplaneProject.Core.Services;
     using AirplaneProject.Domain.Models;
     using AirplaneProject.Infrastructure.Data;
     using AirplaneProject.Infrastructure.Repositories;
@@ -24,10 +24,12 @@ namespace AirplaneProject.IntegrationTests.EntityFrameworkTests
             var uow = new UnitOfWork(context);
             var airplaneRepository = new AirplaneRepository(context);
             var airplaneValidator = new AirplaneValidation(airplaneRepository);
-            var airplaneService = new AirplaneService(airplaneRepository, airplaneValidator, uow);
+            var incluirAirplaneUsecase = new IncluirAirplaneUsecase(airplaneRepository, airplaneValidator, uow);
+            var excluirAirplaneUsecase = new ExcluirAirplaneUsecase(airplaneRepository, airplaneValidator, uow);
+            var editarAirplaneUsecase = new EditarAirplaneUsecase(airplaneRepository, airplaneValidator, uow);
             var mapper = MapperHelper.ConfigMapper();
 
-            return new AirplaneAppService(airplaneRepository, airplaneService, mapper);
+            return new AirplaneAppService(airplaneRepository, editarAirplaneUsecase, incluirAirplaneUsecase, excluirAirplaneUsecase, mapper);
         }
 
 

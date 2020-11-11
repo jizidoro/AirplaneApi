@@ -3,12 +3,12 @@ using AirplaneProject.Application.Services;
 using AirplaneProject.Core.Interfaces;
 using AirplaneProject.Core.Models.Validations;
 using AirplaneProject.Core.Repositories;
-using AirplaneProject.Core.Services;
+using AirplaneProject.Core.Usecases;
+using AirplaneProject.Core.Usecases.AirplaneUsecase;
 using AirplaneProject.CrossCutting.Models;
 using AirplaneProject.Infrastructure.Bases;
 using AirplaneProject.Infrastructure.Data;
 using AirplaneProject.Infrastructure.Repositories;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,8 +25,11 @@ namespace AirplaneProject.CrossCutting.IoC
             // Application - Services
             services.AddScoped<IAirplaneAppService, AirplaneAppService>();
 
-            // Core - Services
-            services.AddScoped<IAirplaneService, AirplaneService>();
+            // Core - Usecases
+            services.AddScoped<EditarAirplaneUsecase>();
+            services.AddScoped<IncluirAirplaneUsecase>();
+            services.AddScoped<ExcluirAirplaneUsecase>();
+            services.AddScoped<BookUsecase>();
 
             // Core - Validations
             services.AddScoped<IAirplaneValidation, AirplaneValidation>();

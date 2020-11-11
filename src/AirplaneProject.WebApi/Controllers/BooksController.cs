@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using AirplaneProject.Core.Services;
+using AirplaneProject.Core.Usecases;
 using AirplaneProject.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,9 +9,9 @@ namespace AirplaneProject.WebApi.Controllers
     [ApiController]
     public class BooksController : ControllerBase
     {
-        private readonly BookService _bookService;
+        private readonly BookUsecase _bookService;
 
-        public BooksController(BookService bookService)
+        public BooksController(BookUsecase bookService)
         {
             _bookService = bookService;
         }

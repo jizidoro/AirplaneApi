@@ -1,22 +1,14 @@
-﻿using AirplaneProject.Core.Bases;
-using AirplaneProject.Core.Extensions;
-using AirplaneProject.Core.Interfaces;
-using AirplaneProject.Core.Messages;
-using AirplaneProject.Domain.Models;
-using AirplaneProject.Core.Models.Results;
-using AirplaneProject.Core.Repositories;
-using System;
+﻿using AirplaneProject.Domain.Models;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using MongoDB.Driver;
 
-namespace AirplaneProject.Core.Services
+namespace AirplaneProject.Core.Usecases
 {
-	public class BookService
+	public class BookUsecase
 	{
 		private readonly IMongoCollection<Book> _books;
 
-		public BookService(IBookstoreDatabaseSettings settings)
+		public BookUsecase(IBookstoreDatabaseSettings settings)
 		{
 			var client = new MongoClient(settings.ConnectionString);
 			var database = client.GetDatabase(settings.DatabaseName);
